@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
+    // TODO: Переименовать как сенса
+    // TODO: Проверить, насколько я помню её нужно выключать
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotateSpeed; // TODO: Переименовать как сенса
 

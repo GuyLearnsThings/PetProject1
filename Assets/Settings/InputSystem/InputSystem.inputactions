@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MoveUp",
+                    "type": "Button",
+                    "id": "c89d3450-1121-4abc-98a1-6015d494435b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveDown",
+                    "type": "Button",
+                    "id": "089bb16a-40bf-4dda-97cb-967517260bea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -46,7 +64,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Up",
                     "id": "01a3e4ad-24f5-4d79-b196-556e89c49964",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -57,7 +75,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "Down",
                     "id": "7d85eaca-aedc-44e5-8676-9efe91eb4cbe",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -68,7 +86,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
+                    "name": "Left",
                     "id": "50ad6317-6601-4ece-882f-2c9827c469b6",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -79,7 +97,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Right",
                     "id": "ca246fb3-b112-4ae8-932f-ac67a1c17349",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -108,6 +126,28 @@
                     "processors": "",
                     "groups": ";Keyboard and Mouse",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9579529-c017-4175-b1c6-8e54720f4059",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e5dd871-de71-44e1-863a-0204d6dc97d0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

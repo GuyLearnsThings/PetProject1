@@ -6,9 +6,13 @@ public class HealthBar : Bar
     public void SetHealthForObserve(Health health)
     {
         _healthForObserve = health;
+    }
+
+    private void OnEnable()
+    {
         _healthForObserve.OnHealthChanged += OnValueChanged;
     }
-    
+
     private void OnDisable()
     {
         if (_healthForObserve != null)
