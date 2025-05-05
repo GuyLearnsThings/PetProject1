@@ -1,12 +1,14 @@
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FighterController : MonoBehaviour
 {
-    [SerializeField] private ObjectPool _objectPool;
     [SerializeField] private int _startHealthValue;
     [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private KillCounterObserver _killCounterObserver;
 
     private Health _health;
     private Transform _currentTarget;
@@ -31,6 +33,7 @@ public class FighterController : MonoBehaviour
     {
         _health = new Health(_startHealthValue);
         _healthBar.SetHealthForObserve(_health);
+
     }
     
     public void ActivateFighter(Func<Transform> callback)

@@ -1,65 +1,128 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMover : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _sensitivity;
+    // TODO: Переименовать как сенса
+    // TODO: Проверить, насколько я помню её нужно выключать
 
-    private InputSystem _input;
-    private Vector2 _direction;
-    private Vector2 _rotate;
-    private Vector2 _rotation;
-    private Vector2 _verticalDirection;
+    [Header("Movement Settings")]
+    [SerializeField] private float _moveSpeed = 40f;
+    [SerializeField] private float _verticalSpeed = 10f;
+
+    [Header("Mouse Settings")]
+    [SerializeField] private float _lookSensitivity = 0.5f;
+
+    //private bool _isLooking;
+    private Vector2 _moveInput;
+    private Vector2 _lookInput;
+    private Vector3 _verticalMovement = Vector3.zero;
+    private float _xRotation = 0f;
+    private float _yRotation = 0f;
+
+
+    private Camera _camera;
+    private InputSystem _inputSystem;
 
 
     private void Awake()
     {
-        _input = new InputSystem();
-        _input.Enable();
+        _camera = Camera.main;
 
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        _rotate = _input.CameraMover.Look.ReadValue<Vector2>();
-        _direction = _input.CameraMover.Move.ReadValue<Vector2>();
-        _verticalDirection = _input.CameraMover.MoveDown.ReadValue<Vector2>();
+        _inputSystem = new InputSystem();
+        _inputSystem.Enable();
 
-        Look(_rotate);
-        Move(_direction);
-        MoveDown(_verticalDirection);
+        _inputSystem.CameraMover.Move.performed += OnMove;
+        _inputSystem.CameraMover.Move.canceled += OnMove;
+
+        _inputSystem.CameraMover.MoveUp.performed += OnMoveUp;
+        _inputSystem.CameraMover.MoveUp.canceled += OnMoveUp;
+
+        _inputSystem.CameraMover.MoveDown.performed += OnMoveDown;
+        _inputSystem.CameraMover.MoveDown.canceled += OnMoveDown;
+
+        _inputSystem.CameraMover.Look.performed += OnLook;
+        _inputSystem.CameraMover.Look.canceled += OnLook;
+
+        //_inputSystem.CameraMover.RightClick.performed += OnRightClick;
+        //_inputSystem.CameraMover.RightClick.canceled += OnRightClick;
+
     }
 
     private void OnDisable()
     {
-        _input.Disable();
+        _inputSystem.CameraMover.Move.performed -= OnMove;
+        _inputSystem.CameraMover.Move.canceled -= OnMove;
+
+        _inputSystem.CameraMover.MoveUp.performed -= OnMoveUp;
+        _inputSystem.CameraMover.MoveUp.canceled -= OnMoveUp;
+
+        _inputSystem.CameraMover.MoveDown.performed -= OnMoveDown;
+        _inputSystem.CameraMover.MoveDown.canceled -= OnMoveDown;
+
+        _inputSystem.CameraMover.Look.performed -= OnLook;
+        _inputSystem.CameraMover.Look.canceled -= OnLook;
+
+        //_inputSystem.CameraMover.RightClick.performed -= OnRightClick;
+        //_inputSystem.CameraMover.RightClick.canceled -= OnRightClick;
+
+        _inputSystem.Disable();
     }
 
-    private void Move(Vector2 direction)
+    private void OnMove(InputAction.CallbackContext context)
     {
-        if (direction.sqrMagnitude < 0.1)
-            return;
+        _moveInput = context.ReadValue<Vector2>();
 
-        float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
-        Vector3 move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
-        transform.position += move * scaledMoveSpeed;
     }
 
-    private void Look(Vector2 rotate)
+    private void OnMoveUp(InputAction.CallbackContext context)
     {
-        if (rotate.sqrMagnitude < 0.01)
-            return;
-
-        float scaledRotateSpeed = _sensitivity * Time.deltaTime;
-        _rotation.y += rotate.x * scaledRotateSpeed;
-        _rotation.x = Mathf.Clamp(_rotation.x - rotate.y * scaledRotateSpeed, -90, 90);
-        transform.localEulerAngles = _rotation;
+        _verticalMovement = context.performed ? Vector3.up : Vector3.zero;
     }
-    private void MoveDown(Vector2 verticalDirection)
-    {
-        float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
-        Vector3 move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(verticalDirection.x, 0, verticalDirection.y);
-        transform.position += move * scaledMoveSpeed;
 
+    private void OnMoveDown(InputAction.CallbackContext context)
+    {
+        _verticalMovement = context.performed ? Vector3.down : Vector3.zero;
+    }
+
+    private void OnLook(InputAction.CallbackContext context)
+    {
+        _lookInput = context.ReadValue<Vector2>();
+    }
+
+    //private void OnRightClick(InputAction.CallbackContext context)
+    //{
+    //    _isLooking = context.performed;
+    //}
+
+    private void Update()
+    {
+        LookAround();
+        MoveCamera();
+    }
+
+    private void MoveCamera()
+    {
+        float speed = _moveSpeed;
+        Vector3 forwardMovement = Vector3.Normalize(transform.forward) * _moveInput.y * speed * Time.deltaTime;
+        Vector3 rightMovement = Vector3.Normalize(transform.right) * _moveInput.x * speed * Time.deltaTime;
+
+        transform.position += forwardMovement + rightMovement + (_verticalMovement * _verticalSpeed * Time.deltaTime);
+    }
+
+    private void LookAround()
+    {
+        float mouseX = _lookInput.x * _lookSensitivity * Time.deltaTime;
+        float mouseY = _lookInput.y * _lookSensitivity * Time.deltaTime;
+
+        _yRotation += mouseX;
+        _xRotation = Mathf.Clamp(_xRotation - mouseY, -90f, 90f);
+
+        transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
     }
 }

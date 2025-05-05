@@ -135,6 +135,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""65df4c8d-9b47-4716-bd45-36bd2e041700"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +245,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""MoveDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c105c3f6-8f6e-4692-98b4-70634b2a245d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse and Keyboard"",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -266,6 +286,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_CameraMover_LeftClick = m_CameraMover.FindAction("LeftClick", throwIfNotFound: true);
         m_CameraMover_MoveUp = m_CameraMover.FindAction("MoveUp", throwIfNotFound: true);
         m_CameraMover_MoveDown = m_CameraMover.FindAction("MoveDown", throwIfNotFound: true);
+        m_CameraMover_RightClick = m_CameraMover.FindAction("RightClick", throwIfNotFound: true);
     }
 
     ~@InputSystem()
@@ -351,6 +372,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_CameraMover_LeftClick;
     private readonly InputAction m_CameraMover_MoveUp;
     private readonly InputAction m_CameraMover_MoveDown;
+    private readonly InputAction m_CameraMover_RightClick;
     /// <summary>
     /// Provides access to input actions defined in input action map "CameraMover".
     /// </summary>
@@ -382,6 +404,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "CameraMover/MoveDown".
         /// </summary>
         public InputAction @MoveDown => m_Wrapper.m_CameraMover_MoveDown;
+        /// <summary>
+        /// Provides access to the underlying input action "CameraMover/RightClick".
+        /// </summary>
+        public InputAction @RightClick => m_Wrapper.m_CameraMover_RightClick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -423,6 +449,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MoveDown.started += instance.OnMoveDown;
             @MoveDown.performed += instance.OnMoveDown;
             @MoveDown.canceled += instance.OnMoveDown;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
         }
 
         /// <summary>
@@ -449,6 +478,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @MoveDown.started -= instance.OnMoveDown;
             @MoveDown.performed -= instance.OnMoveDown;
             @MoveDown.canceled -= instance.OnMoveDown;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
         }
 
         /// <summary>
@@ -537,5 +569,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RightClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightClick(InputAction.CallbackContext context);
     }
 }

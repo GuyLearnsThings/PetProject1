@@ -1,11 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FighterDamageComponent : MonoBehaviour
 {
     [SerializeField] private int _damageValue;
     [SerializeField] private float _attackCoolDown;
+
     private float _attackReset;
+
+    public event UnityAction OnKill;
 
     private void Update()
     {
@@ -20,6 +24,10 @@ public class FighterDamageComponent : MonoBehaviour
             {
                 DealDamage(controller.Health);
                 _attackReset = _attackCoolDown;
+               if (controller.Health.CurrentHealth <= 0)
+                {
+                    OnKill?.Invoke();
+                }
             }
         }
     }

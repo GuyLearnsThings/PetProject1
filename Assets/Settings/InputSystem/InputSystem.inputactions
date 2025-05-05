@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "65df4c8d-9b47-4716-bd45-36bd2e041700",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": ";Keyboard and Mouse;Mouse and Keyboard",
                     "action": "MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c105c3f6-8f6e-4692-98b4-70634b2a245d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse and Keyboard",
+                    "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

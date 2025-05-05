@@ -9,6 +9,8 @@ public class Health
     public event UnityAction<int, int> OnHealthChanged;
     public event UnityAction FighterDies;
 
+    public int CurrentHealth => _currentHealth;
+
     public Health(int healthValue)
     {
         _maxHealth = healthValue;
