@@ -2,7 +2,7 @@
     "name": "InputSystem",
     "maps": [
         {
-            "name": "CameraMover",
+            "name": "GameActionMap",
             "id": "a6ec8851-fff5-43fe-9798-0e1f81776741",
             "actions": [
                 {

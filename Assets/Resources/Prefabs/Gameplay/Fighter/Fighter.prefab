@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startHealthValue: 5
   _healthBar: {fileID: 1013849694380376632}
-  _killCounterObserver: {fileID: 0}
+  _killCounterObserver: {fileID: 8536135765599003386}
 --- !u!114 &4437799881454893753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageValue: 1
   _attackCoolDown: 2
+  _healingOnKillValue: 2
+  _controller: {fileID: 8144668134707617422}
 --- !u!54 &4161077256114887512
 Rigidbody:
   m_ObjectHideFlags: 0

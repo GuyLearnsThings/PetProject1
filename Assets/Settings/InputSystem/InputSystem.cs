@@ -88,7 +88,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem"",
     ""maps"": [
         {
-            ""name"": ""CameraMover"",
+            ""name"": ""GameActionMap"",
             ""id"": ""a6ec8851-fff5-43fe-9798-0e1f81776741"",
             ""actions"": [
                 {
@@ -279,19 +279,19 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // CameraMover
-        m_CameraMover = asset.FindActionMap("CameraMover", throwIfNotFound: true);
-        m_CameraMover_Move = m_CameraMover.FindAction("Move", throwIfNotFound: true);
-        m_CameraMover_Look = m_CameraMover.FindAction("Look", throwIfNotFound: true);
-        m_CameraMover_LeftClick = m_CameraMover.FindAction("LeftClick", throwIfNotFound: true);
-        m_CameraMover_MoveUp = m_CameraMover.FindAction("MoveUp", throwIfNotFound: true);
-        m_CameraMover_MoveDown = m_CameraMover.FindAction("MoveDown", throwIfNotFound: true);
-        m_CameraMover_RightClick = m_CameraMover.FindAction("RightClick", throwIfNotFound: true);
+        // GameActionMap
+        m_GameActionMap = asset.FindActionMap("GameActionMap", throwIfNotFound: true);
+        m_GameActionMap_Move = m_GameActionMap.FindAction("Move", throwIfNotFound: true);
+        m_GameActionMap_Look = m_GameActionMap.FindAction("Look", throwIfNotFound: true);
+        m_GameActionMap_LeftClick = m_GameActionMap.FindAction("LeftClick", throwIfNotFound: true);
+        m_GameActionMap_MoveUp = m_GameActionMap.FindAction("MoveUp", throwIfNotFound: true);
+        m_GameActionMap_MoveDown = m_GameActionMap.FindAction("MoveDown", throwIfNotFound: true);
+        m_GameActionMap_RightClick = m_GameActionMap.FindAction("RightClick", throwIfNotFound: true);
     }
 
     ~@InputSystem()
     {
-        UnityEngine.Debug.Assert(!m_CameraMover.enabled, "This will cause a leak and performance issues, InputSystem.CameraMover.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_GameActionMap.enabled, "This will cause a leak and performance issues, InputSystem.GameActionMap.Disable() has not been called.");
     }
 
     /// <summary>
@@ -364,54 +364,54 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // CameraMover
-    private readonly InputActionMap m_CameraMover;
-    private List<ICameraMoverActions> m_CameraMoverActionsCallbackInterfaces = new List<ICameraMoverActions>();
-    private readonly InputAction m_CameraMover_Move;
-    private readonly InputAction m_CameraMover_Look;
-    private readonly InputAction m_CameraMover_LeftClick;
-    private readonly InputAction m_CameraMover_MoveUp;
-    private readonly InputAction m_CameraMover_MoveDown;
-    private readonly InputAction m_CameraMover_RightClick;
+    // GameActionMap
+    private readonly InputActionMap m_GameActionMap;
+    private List<IGameActionMapActions> m_GameActionMapActionsCallbackInterfaces = new List<IGameActionMapActions>();
+    private readonly InputAction m_GameActionMap_Move;
+    private readonly InputAction m_GameActionMap_Look;
+    private readonly InputAction m_GameActionMap_LeftClick;
+    private readonly InputAction m_GameActionMap_MoveUp;
+    private readonly InputAction m_GameActionMap_MoveDown;
+    private readonly InputAction m_GameActionMap_RightClick;
     /// <summary>
-    /// Provides access to input actions defined in input action map "CameraMover".
+    /// Provides access to input actions defined in input action map "GameActionMap".
     /// </summary>
-    public struct CameraMoverActions
+    public struct GameActionMapActions
     {
         private @InputSystem m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public CameraMoverActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public GameActionMapActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/Move".
+        /// Provides access to the underlying input action "GameActionMap/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_CameraMover_Move;
+        public InputAction @Move => m_Wrapper.m_GameActionMap_Move;
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/Look".
+        /// Provides access to the underlying input action "GameActionMap/Look".
         /// </summary>
-        public InputAction @Look => m_Wrapper.m_CameraMover_Look;
+        public InputAction @Look => m_Wrapper.m_GameActionMap_Look;
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/LeftClick".
+        /// Provides access to the underlying input action "GameActionMap/LeftClick".
         /// </summary>
-        public InputAction @LeftClick => m_Wrapper.m_CameraMover_LeftClick;
+        public InputAction @LeftClick => m_Wrapper.m_GameActionMap_LeftClick;
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/MoveUp".
+        /// Provides access to the underlying input action "GameActionMap/MoveUp".
         /// </summary>
-        public InputAction @MoveUp => m_Wrapper.m_CameraMover_MoveUp;
+        public InputAction @MoveUp => m_Wrapper.m_GameActionMap_MoveUp;
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/MoveDown".
+        /// Provides access to the underlying input action "GameActionMap/MoveDown".
         /// </summary>
-        public InputAction @MoveDown => m_Wrapper.m_CameraMover_MoveDown;
+        public InputAction @MoveDown => m_Wrapper.m_GameActionMap_MoveDown;
         /// <summary>
-        /// Provides access to the underlying input action "CameraMover/RightClick".
+        /// Provides access to the underlying input action "GameActionMap/RightClick".
         /// </summary>
-        public InputAction @RightClick => m_Wrapper.m_CameraMover_RightClick;
+        public InputAction @RightClick => m_Wrapper.m_GameActionMap_RightClick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_CameraMover; }
+        public InputActionMap Get() { return m_Wrapper.m_GameActionMap; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -419,9 +419,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="CameraMoverActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="GameActionMapActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(CameraMoverActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(GameActionMapActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -429,11 +429,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="CameraMoverActions" />
-        public void AddCallbacks(ICameraMoverActions instance)
+        /// <seealso cref="GameActionMapActions" />
+        public void AddCallbacks(IGameActionMapActions instance)
         {
-            if (instance == null || m_Wrapper.m_CameraMoverActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_CameraMoverActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameActionMapActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameActionMapActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -460,8 +460,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="CameraMoverActions" />
-        private void UnregisterCallbacks(ICameraMoverActions instance)
+        /// <seealso cref="GameActionMapActions" />
+        private void UnregisterCallbacks(IGameActionMapActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -484,12 +484,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraMoverActions.UnregisterCallbacks(ICameraMoverActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GameActionMapActions.UnregisterCallbacks(IGameActionMapActions)" />.
         /// </summary>
-        /// <seealso cref="CameraMoverActions.UnregisterCallbacks(ICameraMoverActions)" />
-        public void RemoveCallbacks(ICameraMoverActions instance)
+        /// <seealso cref="GameActionMapActions.UnregisterCallbacks(IGameActionMapActions)" />
+        public void RemoveCallbacks(IGameActionMapActions instance)
         {
-            if (m_Wrapper.m_CameraMoverActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameActionMapActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -499,21 +499,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="CameraMoverActions.AddCallbacks(ICameraMoverActions)" />
-        /// <seealso cref="CameraMoverActions.RemoveCallbacks(ICameraMoverActions)" />
-        /// <seealso cref="CameraMoverActions.UnregisterCallbacks(ICameraMoverActions)" />
-        public void SetCallbacks(ICameraMoverActions instance)
+        /// <seealso cref="GameActionMapActions.AddCallbacks(IGameActionMapActions)" />
+        /// <seealso cref="GameActionMapActions.RemoveCallbacks(IGameActionMapActions)" />
+        /// <seealso cref="GameActionMapActions.UnregisterCallbacks(IGameActionMapActions)" />
+        public void SetCallbacks(IGameActionMapActions instance)
         {
-            foreach (var item in m_Wrapper.m_CameraMoverActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameActionMapActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_CameraMoverActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameActionMapActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="CameraMoverActions" /> instance referencing this action map.
+    /// Provides a new <see cref="GameActionMapActions" /> instance referencing this action map.
     /// </summary>
-    public CameraMoverActions @CameraMover => new CameraMoverActions(this);
+    public GameActionMapActions @GameActionMap => new GameActionMapActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -528,11 +528,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraMover" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "GameActionMap" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="CameraMoverActions.AddCallbacks(ICameraMoverActions)" />
-    /// <seealso cref="CameraMoverActions.RemoveCallbacks(ICameraMoverActions)" />
-    public interface ICameraMoverActions
+    /// <seealso cref="GameActionMapActions.AddCallbacks(IGameActionMapActions)" />
+    /// <seealso cref="GameActionMapActions.RemoveCallbacks(IGameActionMapActions)" />
+    public interface IGameActionMapActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

@@ -6,10 +6,13 @@ public class FighterDamageComponent : MonoBehaviour
 {
     [SerializeField] private int _damageValue;
     [SerializeField] private float _attackCoolDown;
+    [SerializeField] private int _healingOnKillValue;
+    [SerializeField] private FighterController _controller;
 
     private float _attackReset;
 
     public event UnityAction OnKill;
+    
 
     private void Update()
     {
@@ -27,6 +30,7 @@ public class FighterDamageComponent : MonoBehaviour
                if (controller.Health.CurrentHealth <= 0)
                 {
                     OnKill?.Invoke();
+                    HealOnLastHit(_controller.Health);
                 }
             }
         }
@@ -35,5 +39,10 @@ public class FighterDamageComponent : MonoBehaviour
     private void DealDamage(Health health)
     {
         health.TakeDamage(_damageValue);
+    }
+
+    private void HealOnLastHit(Health health)
+    {
+        health.Heal(_healingOnKillValue);
     }
 }

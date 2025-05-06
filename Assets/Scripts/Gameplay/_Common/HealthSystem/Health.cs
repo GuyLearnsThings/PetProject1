@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine.Events;
 
 public class Health
@@ -17,7 +18,6 @@ public class Health
         _currentHealth = healthValue;
     }
     
-    
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage; // TODO: Закончить нанесение урона + сделдать метод для хила
@@ -25,6 +25,14 @@ public class Health
         if (_currentHealth <= 0)
         {
             FighterDies?.Invoke();
+        }
+    }
+
+    public void Heal(int healValue)
+    {
+        if (_currentHealth < _maxHealth)
+        {
+            _currentHealth+=healValue;
         }
     }
 }
