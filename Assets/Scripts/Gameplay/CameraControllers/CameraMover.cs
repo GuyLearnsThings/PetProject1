@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class CameraMover : MonoBehaviour
 {
@@ -23,11 +24,9 @@ public class CameraMover : MonoBehaviour
     private Camera _camera;
     private InputSystem _inputSystem;
 
-
     private void Awake()
     {
         _camera = Camera.main;
-
     }
 
     private void Update()

@@ -10,6 +10,7 @@ public class FighterController : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private KillCounterObserver _killCounterObserver;
 
+
     private Health _health;
     private Transform _currentTarget;
     private bool _isActive;
@@ -18,7 +19,7 @@ public class FighterController : MonoBehaviour
     public bool IsActive => _isActive;
     public Transform CurrentTarget => _currentTarget;
     public Health Health => _health;
-    
+
     private void OnEnable()
     {
         _health.FighterDies += OnFighterDeath;
@@ -51,5 +52,10 @@ public class FighterController : MonoBehaviour
     public void OnFighterDeath()
     {
         gameObject.SetActive(false);
+    }
+    
+    public void HealUponReEngage()
+    {
+        _health.HealToFullUponReEngage();
     }
 }

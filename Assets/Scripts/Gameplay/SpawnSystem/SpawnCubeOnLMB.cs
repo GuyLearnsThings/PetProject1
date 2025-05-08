@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class SpawnCubeOnLMB : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] private GameObject _cube;
 
     public event UnityAction CreateCube;
 

@@ -35,4 +35,10 @@ public class Health
             _currentHealth+=healValue;
         }
     }
+
+    public void HealToFullUponReEngage()
+    {
+        _currentHealth = _maxHealth;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
 }

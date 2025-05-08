@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,7 +75,9 @@ public class CubesFactory : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             cube.transform.position = hit.point;
+            controller.ActivateFighter(GetRandomTarget);
             cube.SetActive(true);
+            controller.HealUponReEngage();
         }
     }
 }

@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
       propertyPath: m_Name
-      value: Box_100x100x100_Prefab
+      value: SmallBox
       objectReference: {fileID: 0}
     - target: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
       propertyPath: m_IsActive
@@ -427,7 +427,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -598,7 +598,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1062,7 +1062,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 40
+      value: 5
       mode: 0
       spread: 0
       speed:
@@ -5422,8 +5422,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 0.7
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10120,7 +10120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3051928965768018776, guid: 7b846d8f536f007498c941069487ce81, type: 3}
       propertyPath: m_Name
-      value: Box_350x250x200_Prefab
+      value: BigBox
       objectReference: {fileID: 0}
     - target: {fileID: 3051928965768018776, guid: 7b846d8f536f007498c941069487ce81, type: 3}
       propertyPath: m_IsActive
@@ -10558,8 +10558,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15564,7 +15564,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -20419,6 +20419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 956705194}
+  _cube: {fileID: 2711318888108342310, guid: adc50bd68f30d9440b244028192eb801, type: 3}
 --- !u!1 &1035613925
 GameObject:
   m_ObjectHideFlags: 0
@@ -20460,7 +20461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7561066613761435406, guid: 50a0925b0c22af146a2d15615f815a1c, type: 3}
       propertyPath: m_Name
-      value: Stairs_650_400_300_Prefab
+      value: Stairs
       objectReference: {fileID: 0}
     - target: {fileID: 7561066613761435406, guid: 50a0925b0c22af146a2d15615f815a1c, type: 3}
       propertyPath: m_IsActive
@@ -20564,7 +20565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 400332205661090503, guid: a9ef32e8d7c7bb84c8730e7347b637de, type: 3}
       propertyPath: m_Name
-      value: Ramp_100x100x200_Mesh
+      value: SmallRamp
       objectReference: {fileID: 0}
     - target: {fileID: 400332205661090503, guid: a9ef32e8d7c7bb84c8730e7347b637de, type: 3}
       propertyPath: m_IsActive
@@ -20888,7 +20889,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1335415992372505392, guid: 466621a4836aa504c87c15d88722d465, type: 3}
       propertyPath: m_Name
-      value: Stairs_200x100x200_Prefab
+      value: SmallStairs
       objectReference: {fileID: 0}
     - target: {fileID: 1335415992372505392, guid: 466621a4836aa504c87c15d88722d465, type: 3}
       propertyPath: m_IsActive
@@ -21054,7 +21055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3051928965768018776, guid: 7b846d8f536f007498c941069487ce81, type: 3}
       propertyPath: m_Name
-      value: Box_350x250x200_Prefab (1)
+      value: BigBox
       objectReference: {fileID: 0}
     - target: {fileID: 3051928965768018776, guid: 7b846d8f536f007498c941069487ce81, type: 3}
       propertyPath: m_IsActive
@@ -21125,7 +21126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8924170145835402666, guid: 8a7437817844dce4894b049de73b75f2, type: 3}
       propertyPath: m_Name
-      value: SmallRamp
+      value: Ramp
       objectReference: {fileID: 0}
     - target: {fileID: 8924170145835402666, guid: 8a7437817844dce4894b049de73b75f2, type: 3}
       propertyPath: m_IsActive
