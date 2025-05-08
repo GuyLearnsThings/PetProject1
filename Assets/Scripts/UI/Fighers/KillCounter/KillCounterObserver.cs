@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class KillCounterObserver : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _counter;
+    [SerializeField] private TMP_Text _counterLabel;
     [SerializeField] private FighterDamageComponent _controllerForObserve;
 
     private int _currentValue;
@@ -20,12 +20,11 @@ public class KillCounterObserver : MonoBehaviour
 
     private void Awake()
     {
-        _currentValue = 0;
-        _counter.text = _currentValue.ToString();
+        _counterLabel.text = _currentValue.ToString();
     }
     private void CounterChanged()
     {
         _currentValue++;
-        _counter.text = _currentValue.ToString();
+        _counterLabel.text = _currentValue.ToString();
     }
 }

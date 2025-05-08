@@ -1,6 +1,4 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CubesFactory : MonoBehaviour
 {
@@ -12,26 +10,12 @@ public class CubesFactory : MonoBehaviour
     [SerializeField] private Transform _boundary2;
 
     [SerializeField] private ObjectPool _objectPool;
-    [SerializeField] private SpawnCubeOnLMB _cubeCreator;
-
-    private Camera _camera;
 
     private void Awake()
     {
-        _camera = Camera.main;
         _objectPool.Initialise(_prefab);
         SpawnCubes();
         ActivateCubes();
-    }
-
-    private void OnEnable()
-    {
-        _cubeCreator.CreateCube += SpawnCubeOnLeftClick;
-    }
-
-    private void OnDisable()
-    {
-        _cubeCreator.CreateCube -= SpawnCubeOnLeftClick;
     }
 
     private void SpawnCubes()
@@ -40,25 +24,21 @@ public class CubesFactory : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            var cube = _objectPool.GetObject();
             Vector3 randomSpawnPosition = new Vector3(
                 Random.Range(_boundary1.position.x, _boundary2.position.x),
                 5,
                 Random.Range(_boundary1.position.z, _boundary2.position.z));
-
-            cube.transform.position = randomSpawnPosition;
-            cube.SetActive(true);
+            
+            SpawnCube(randomSpawnPosition);
         }
     }
 
     private void ActivateCubes()
     {
         var activeCubes = _objectPool.GetActiveObjects();
+        
         foreach (var cube in activeCubes)
-        {
-            var controller = cube.GetComponent<FighterController>();
-            controller.ActivateFighter(GetRandomTarget);
-        }
+            ActivateCube(cube);
     }
 
     private Transform GetRandomTarget()
@@ -66,19 +46,24 @@ public class CubesFactory : MonoBehaviour
         return _objectPool.GetRandomActiveCube().transform;
     }
 
-    private void SpawnCubeOnLeftClick()
+    public void SpawnCubeOnLeftClick(Vector3 positionForSpawn)
+    {
+        var cube = SpawnCube(positionForSpawn);
+        ActivateCube(cube);
+    }
+
+    private GameObject SpawnCube(Vector3 spawnPosition)
     {
         var cube = _objectPool.GetObject();
-        var controller = cube.GetComponent<FighterController>();
-        Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            cube.transform.position = hit.point;
-            controller.ActivateFighter(GetRandomTarget);
-            cube.SetActive(true);
-            controller.HealUponReEngage();
-        }
+        cube.transform.position = spawnPosition;
+        cube.SetActive(true);
+        return cube;
+    }
+
+    private void ActivateCube(GameObject obj)
+    {
+        var controller = obj.GetComponent<FighterController>();
+        controller.ActivateFighter(GetRandomTarget);
     }
 }
 

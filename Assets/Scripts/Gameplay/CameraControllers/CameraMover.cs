@@ -1,12 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using DG.Tweening;
 
 public class CameraMover : MonoBehaviour
 {
-    // TODO: Переименовать как сенса
-    // TODO: Проверить, насколько я помню её нужно выключать
     [SerializeField] private InputReader _inputReader;
 
     [Header("Movement Settings")]
@@ -15,20 +10,12 @@ public class CameraMover : MonoBehaviour
 
     [Header("Mouse Settings")]
     [SerializeField] private float _lookSensitivity = 0.5f;
-
-    //private bool _isLooking;
+    
     private float _xRotation = 0f;
     private float _yRotation = 0f;
-
-
-    private Camera _camera;
+    
     private InputSystem _inputSystem;
-
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
-
+    
     private void Update()
     {
         LookAround();
@@ -38,10 +25,10 @@ public class CameraMover : MonoBehaviour
     private void MoveCamera()
     {
         float speed = _moveSpeed;
-        Vector3 forwardMovement = Vector3.Normalize(transform.forward) * _inputReader.MoveInput.y * speed * Time.deltaTime;
-        Vector3 rightMovement = Vector3.Normalize(transform.right) * _inputReader.MoveInput.x * speed * Time.deltaTime;
+        Vector3 forwardMovement = Vector3.Normalize(transform.forward) * (_inputReader.MoveInput.y * speed * Time.deltaTime);
+        Vector3 rightMovement = Vector3.Normalize(transform.right) * (_inputReader.MoveInput.x * speed * Time.deltaTime);
 
-        transform.position += forwardMovement + rightMovement + (_inputReader.VerticalMovement * _verticalSpeed * Time.deltaTime);
+        transform.position += forwardMovement + rightMovement + _inputReader.VerticalMovement * (_verticalSpeed * Time.deltaTime);
     }
 
     private void LookAround()

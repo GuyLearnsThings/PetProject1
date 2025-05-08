@@ -1,20 +1,15 @@
 using System;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class FighterController : MonoBehaviour
 {
     [SerializeField] private int _startHealthValue;
     [SerializeField] private HealthBar _healthBar;
-    [SerializeField] private KillCounterObserver _killCounterObserver;
-
-
+    
     private Health _health;
     private Transform _currentTarget;
-    private bool _isActive;
     private Func<Transform> _getNewTargetCallback;
+    private bool _isActive;
 
     public bool IsActive => _isActive;
     public Transform CurrentTarget => _currentTarget;
@@ -23,18 +18,18 @@ public class FighterController : MonoBehaviour
     private void OnEnable()
     {
         _health.FighterDies += OnFighterDeath;
+        _health.Heal(999);
     }
 
     private void OnDisable()
     {
         _health.FighterDies -= OnFighterDeath;
     }
-
+    
     private void Awake()
     {
         _health = new Health(_startHealthValue);
         _healthBar.SetHealthForObserve(_health);
-
     }
     
     public void ActivateFighter(Func<Transform> callback)
@@ -46,16 +41,11 @@ public class FighterController : MonoBehaviour
 
     public void GetNewTarget()
     {
-        _currentTarget = _getNewTargetCallback.Invoke();
+        _currentTarget = _getNewTargetCallback?.Invoke();
     }
 
-    public void OnFighterDeath()
+    private void OnFighterDeath()
     {
         gameObject.SetActive(false);
-    }
-    
-    public void HealUponReEngage()
-    {
-        _health.HealToFullUponReEngage();
     }
 }

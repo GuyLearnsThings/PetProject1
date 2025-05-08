@@ -1,26 +1,22 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour
 {
-    //private bool _isLooking;
     private InputSystem _inputSystem;
     private Vector2 _moveInput;
     private Vector2 _lookInput;
     private Vector3 _verticalMovement;
     private bool _leftClickPerformed;
-
-    public bool LeftClickPerformed => _leftClickPerformed;
     public Vector2 MoveInput => _moveInput;
     public Vector2 LookInput => _lookInput;
     public Vector3 VerticalMovement => _verticalMovement;
 
-    public event UnityAction LMBPressed;
+    public event UnityAction LMBPressed; // TODO: РљРѕРЅРєСЂРµС‚РЅР°СЏ РєР»Р°РІРёС€Р° РІ РЅР°Р·РІР°РЅРёРё, РєР»Р°РІРёС€Рё - РЅР°СЃС‚СЂР°РёРІР°РµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёРіСЂРѕРєРѕРј.
     private void OnEnable()
     {
-        // Выношу это в отдельный скрипт, который все включает и читает значения, прокидываю ссылку через СФ на него
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
         _inputSystem = new InputSystem();
         _inputSystem.Enable();
 
@@ -37,10 +33,6 @@ public class InputReader : MonoBehaviour
         _inputSystem.GameActionMap.Look.canceled += OnLook;
 
         _inputSystem.GameActionMap.LeftClick.performed += OnLeftClick;
-
-        //_inputSystem.CameraMover.RightClick.performed += OnRightClick;
-        //_inputSystem.CameraMover.RightClick.canceled += OnRightClick;
-
     }
 
     private void OnDisable()
@@ -59,15 +51,11 @@ public class InputReader : MonoBehaviour
 
         _inputSystem.GameActionMap.LeftClick.performed -= OnLeftClick;
 
-        //_inputSystem.CameraMover.RightClick.performed -= OnRightClick;
-        //_inputSystem.CameraMover.RightClick.canceled -= OnRightClick;
-
         _inputSystem.Disable();
     }
     private void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
-
     }
 
     private void OnMoveUp(InputAction.CallbackContext context)
