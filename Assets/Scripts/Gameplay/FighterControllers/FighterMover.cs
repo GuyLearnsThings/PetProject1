@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class FighterMover : MonoBehaviour
 {
     [SerializeField] private FighterController _fighterController;
+    [SerializeField] private float _speed;
     
     private NavMeshAgent _navMeshAgent;
     

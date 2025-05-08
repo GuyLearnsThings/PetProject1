@@ -8,6 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/CutscenesControllers/CutsceneController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/FighterControllers/FighterDamageComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/_Common/HealthSystem/Health.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../ProjectForSteam/ProjectForSteam/Assets/Submodules/Scripts/SpawnSystem/GenericPool.cs" root0="SKIP_HIGHLIGHTING" />
@@ -68,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746340875098</updated>
       <workItem from="1746340877109" duration="8439000" />
-      <workItem from="1746723387709" duration="5589000" />
+      <workItem from="1746723387709" duration="7591000" />
     </task>
     <servers />
   </component>

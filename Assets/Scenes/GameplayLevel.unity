@@ -262,6 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 366868317}
+  - component: {fileID: 366868318}
   m_Layer: 0
   m_Name: FinalCutscene
   m_TagString: Untagged
@@ -285,6 +286,18 @@ Transform:
   - {fileID: 366276902}
   m_Father: {fileID: 1938464754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366868318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366868316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2a5d89f4ce9be43abfab3c6d754fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &401428935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -922,6 +935,7 @@ MonoBehaviour:
   _boundary1: {fileID: 30956532}
   _boundary2: {fileID: 782759705}
   _objectPool: {fileID: 1025240720}
+  _cutsceneController: {fileID: 366868318}
 --- !u!4 &1025240719
 Transform:
   m_ObjectHideFlags: 0

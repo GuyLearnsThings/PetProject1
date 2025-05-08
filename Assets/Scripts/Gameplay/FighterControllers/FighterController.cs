@@ -9,6 +9,7 @@ public class FighterController : MonoBehaviour
     private Health _health;
     private Transform _currentTarget;
     private Func<Transform> _getNewTargetCallback;
+    private Action<Transform> _onKillCallback;
     private bool _isActive;
 
     public bool IsActive => _isActive;
@@ -32,9 +33,10 @@ public class FighterController : MonoBehaviour
         _healthBar.SetHealthForObserve(_health);
     }
     
-    public void ActivateFighter(Func<Transform> callback)
+    public void ActivateFighter(Func<Transform> getNewTargetCallback, Action<Transform> onKillCallback)
     {
-        _getNewTargetCallback = callback;
+        _getNewTargetCallback = getNewTargetCallback;
+        _onKillCallback = onKillCallback;
         GetNewTarget();
         _isActive = true;
     }
@@ -47,5 +49,6 @@ public class FighterController : MonoBehaviour
     private void OnFighterDeath()
     {
         gameObject.SetActive(false);
+        _onKillCallback?.Invoke(transform);
     }
 }

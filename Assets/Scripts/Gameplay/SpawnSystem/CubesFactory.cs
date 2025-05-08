@@ -10,6 +10,7 @@ public class CubesFactory : MonoBehaviour
     [SerializeField] private Transform _boundary2;
 
     [SerializeField] private ObjectPool _objectPool;
+    [SerializeField] private CutsceneController _cutsceneController;
 
     private void Awake()
     {
@@ -63,7 +64,15 @@ public class CubesFactory : MonoBehaviour
     private void ActivateCube(GameObject obj)
     {
         var controller = obj.GetComponent<FighterController>();
-        controller.ActivateFighter(GetRandomTarget);
+        controller.ActivateFighter(GetRandomTarget, CheckActiveCubesCount);
+    }
+
+    private void CheckActiveCubesCount(Transform killedCube)
+    {
+        if ( _objectPool.GetActiveObjects().Count <= 1)
+        {
+            _cutsceneController.StartFinalCutscene(killedCube);
+        }
     }
 }
 
