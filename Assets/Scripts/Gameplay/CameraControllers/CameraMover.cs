@@ -1,7 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UIElements;
-using System.Collections;
 
 public class CameraMover : MonoBehaviour
 {
@@ -19,12 +16,9 @@ public class CameraMover : MonoBehaviour
 
     private InputSystem _inputSystem;
 
-    private bool _cutSceneStarted = false;
-
     private void Update()
     {
-        if (!_cutSceneStarted)
-            LookAround();
+        LookAround();
         MoveCamera();
     }
 
@@ -49,8 +43,8 @@ public class CameraMover : MonoBehaviour
     }
     public void MoveToWinner(Transform wayPointTransform, Transform cubeTransform)
     {
-        _cutSceneStarted = true;
-        transform.DOMove(wayPointTransform.position, 3);
-        transform.LookAt(cubeTransform);
+        transform.position = wayPointTransform.position;
+        transform.LookAt(cubeTransform.position);
+        Time.timeScale = 0;
     }
 }

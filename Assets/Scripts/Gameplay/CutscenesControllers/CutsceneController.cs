@@ -12,7 +12,7 @@ public class CutsceneController : MonoBehaviour
         _camera.MoveToWinner(targetMove, targetLook);
         _finalCutsceneFX.transform.position = targetLook.position;
         _finalCutsceneFX.Play();
-        Debug.Log("Final");
+        Debug.Log(targetLook);
         Debug.Log(targetMove);
     }
 }

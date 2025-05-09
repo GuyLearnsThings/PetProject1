@@ -13,10 +13,9 @@ public class InputReader : MonoBehaviour
     public Vector2 LookInput => _lookInput;
     public Vector3 VerticalMovement => _verticalMovement;
 
-    public event UnityAction LMBPressed; // TODO: Конкретная клавиша в названии, клавиши - настраиваемый элемент игроком.
+    public event UnityAction OnPlayerInput;
     private void OnEnable()
     {
-        // ������ ��� � ��������� ������, ������� ��� �������� � ������ ��������, ���������� ������ ����� �� �� ����
         _inputSystem = new InputSystem();
         _inputSystem.Enable();
 
@@ -74,7 +73,7 @@ public class InputReader : MonoBehaviour
     }
     private void OnLeftClick(InputAction.CallbackContext context)
     {
-        LMBPressed?.Invoke();
+        OnPlayerInput?.Invoke();
     }
     public void DisableForCutscene()
     {

@@ -15,11 +15,11 @@ public class SpawnCubeOnScreenTap : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputReader.LMBPressed += CreateCubeOnLMB;
+        _inputReader.OnPlayerInput += CreateCubeOnLMB;
     }
     private void OnDisable()
     {
-        _inputReader.LMBPressed -= CreateCubeOnLMB;
+        _inputReader.OnPlayerInput -= CreateCubeOnLMB;
     }
 
     private void CreateCubeOnLMB()
