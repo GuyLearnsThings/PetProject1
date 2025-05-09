@@ -1,4 +1,7 @@
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UIElements;
+using System.Collections;
 
 public class CameraMover : MonoBehaviour
 {
@@ -10,15 +13,18 @@ public class CameraMover : MonoBehaviour
 
     [Header("Mouse Settings")]
     [SerializeField] private float _lookSensitivity = 0.5f;
-    
+
     private float _xRotation = 0f;
     private float _yRotation = 0f;
-    
+
     private InputSystem _inputSystem;
-    
+
+    private bool _cutSceneStarted = false;
+
     private void Update()
     {
-        LookAround();
+        if (!_cutSceneStarted)
+            LookAround();
         MoveCamera();
     }
 
@@ -40,5 +46,11 @@ public class CameraMover : MonoBehaviour
         _xRotation = Mathf.Clamp(_xRotation - mouseY, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
+    }
+    public void MoveToWinner(Transform wayPointTransform, Transform cubeTransform)
+    {
+        _cutSceneStarted = true;
+        transform.DOMove(wayPointTransform.position, 3);
+        transform.LookAt(cubeTransform);
     }
 }

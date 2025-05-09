@@ -76,4 +76,8 @@ public class InputReader : MonoBehaviour
     {
         LMBPressed?.Invoke();
     }
+    public void DisableForCutscene()
+    {
+        gameObject.SetActive(false);
+    }
 }

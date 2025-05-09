@@ -5,16 +5,18 @@ public class FighterController : MonoBehaviour
 {
     [SerializeField] private int _startHealthValue;
     [SerializeField] private HealthBar _healthBar;
-    
+    [SerializeField] private Transform _waypointForFinal;
+
     private Health _health;
     private Transform _currentTarget;
     private Func<Transform> _getNewTargetCallback;
-    private Action<Transform> _onKillCallback;
+    private Action _onKillCallback;
     private bool _isActive;
 
     public bool IsActive => _isActive;
     public Transform CurrentTarget => _currentTarget;
     public Health Health => _health;
+    public Transform WayPointForFinal => _waypointForFinal; 
 
     private void OnEnable()
     {
@@ -33,7 +35,7 @@ public class FighterController : MonoBehaviour
         _healthBar.SetHealthForObserve(_health);
     }
     
-    public void ActivateFighter(Func<Transform> getNewTargetCallback, Action<Transform> onKillCallback)
+    public void ActivateFighter(Func<Transform> getNewTargetCallback, Action onKillCallback)
     {
         _getNewTargetCallback = getNewTargetCallback;
         _onKillCallback = onKillCallback;
@@ -49,6 +51,6 @@ public class FighterController : MonoBehaviour
     private void OnFighterDeath()
     {
         gameObject.SetActive(false);
-        _onKillCallback?.Invoke(transform);
+        _onKillCallback?.Invoke();
     }
 }

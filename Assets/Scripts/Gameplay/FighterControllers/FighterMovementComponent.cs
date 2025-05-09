@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FighterMover : MonoBehaviour
+public class FighterMovementComponent : MonoBehaviour
 {
     [SerializeField] private FighterController _fighterController;
     [SerializeField] private float _speed;

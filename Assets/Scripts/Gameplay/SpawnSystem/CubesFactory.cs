@@ -67,11 +67,13 @@ public class CubesFactory : MonoBehaviour
         controller.ActivateFighter(GetRandomTarget, CheckActiveCubesCount);
     }
 
-    private void CheckActiveCubesCount(Transform killedCube)
+    private void CheckActiveCubesCount()
     {
-        if ( _objectPool.GetActiveObjects().Count <= 1)
+        var activeObjects = _objectPool.GetActiveObjects();
+        if (activeObjects.Count <= 1)
         {
-            _cutsceneController.StartFinalCutscene(killedCube);
+            var fighter = activeObjects[0].GetComponent<FighterController>();
+            _cutsceneController.StartFinalCutscene(fighter.gameObject.transform, fighter.WayPointForFinal);
         }
     }
 }
